@@ -1,16 +1,5 @@
-# news_api
+This is the first small project that represents the news articles into an explorable app that not only has small description, but the option to open the link of external websites that has more information about a particular article.
+It shows a list of the title of the article made by TechCrunch and taking only the top headlines of the articles.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Everything was made with Flutter Framework and all the ownership was made by me.
+The API is from this website: https://newsapi.org/
