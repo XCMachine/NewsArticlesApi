@@ -15,24 +15,32 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  ArticleProvider? articleProvider;
+
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final articleProvider =
+      articleProvider =
           Provider.of<ArticleProvider>(context, listen: false);
-      await articleProvider.getArticles();
+      await articleProvider!.getArticles();
     });
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    articleProvider = null;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final articleProvider = Provider.of<ArticleProvider>(context);
+    articleProvider = Provider.of<ArticleProvider>(context);
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: articleProvider.isLoading
+      body: articleProvider!.isLoading
           ? const Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -53,10 +61,10 @@ class _HomePageState extends State<HomePage> {
             child: Padding(
                 padding: const EdgeInsets.all(Constants.kOverallPadding),
                 child: ListView.separated(
-                  itemCount: articleProvider.articlesList.articles.length,
+                  itemCount: articleProvider!.articlesList.articles.length,
                   separatorBuilder: (context, index) => const SizedBox(height: 8),
                   itemBuilder: (context, index) {
-                    final article = articleProvider.articlesList.articles[index];
+                    final article = articleProvider!.articlesList.articles[index];
 
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                         SourceTextLink(
                           onTap: () => launchUrl(Uri.parse(article.url)),
                           text: 'Source: ${article.url}',
-                          isHovered: articleProvider.isHovered,
+                          isHovered: articleProvider!.isHovered,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
