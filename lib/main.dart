@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:news_api/http/http.dart';
 import 'package:news_api/providers/home_page_provider.dart';
 import 'package:news_api/repositories/repository_articles.dart';
@@ -10,8 +11,8 @@ void main() {
       ChangeNotifierProvider(
           create: (BuildContext context) =>
               ArticleProvider(ArticlesRepository(ApiService())),
-          child: const MyApp()
-      )
+          child: const MyApp(),
+      ),
   );
 }
 
@@ -20,6 +21,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
