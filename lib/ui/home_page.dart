@@ -22,13 +22,14 @@ class _HomePageState extends State<HomePage> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       articleProvider = Provider.of<ArticleProvider>(context, listen: false);
-      await articleProvider!.getArticles();
+      await articleProvider?.getArticles();
     });
   }
 
   @override
   void dispose() {
     super.dispose();
+    articleProvider!.dispose();
     articleProvider = null;
   }
 
@@ -61,15 +62,15 @@ class _HomePageState extends State<HomePage> {
                 itemCount: articleProvider!.articlesList.articles.length,
                 separatorBuilder: (context, index) => const SizedBox(height: 8),
                 itemBuilder: (context, index) {
-                  final article = articleProvider!.articlesList.articles[index];
+                  final article = articleProvider?.articlesList.articles[index];
 
                   return ArticleItem(
-                    title: article.title,
-                    description: article.description,
-                    articleSourceName: article.source.name,
-                    url: article.url,
-                    urlToImage: article.urlToImage,
-                    publishedAt: article.publishedAt,
+                    title: article?.title,
+                    description: article?.description,
+                    articleSourceName: article?.source.name,
+                    url: article?.url,
+                    urlToImage: article?.urlToImage,
+                    publishedAt: article?.publishedAt,
                     isHovered: articleProvider!.isHovered,
                   );
                 },
