@@ -10,8 +10,8 @@ void main() {
       ChangeNotifierProvider(
           create: (BuildContext context) =>
               ArticleProvider(ArticlesRepository(ApiService())),
-          child: const MyApp()
-      )
+          child: const MyApp(),
+      ),
   );
 }
 
