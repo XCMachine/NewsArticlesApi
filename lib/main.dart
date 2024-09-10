@@ -7,10 +7,13 @@ import 'package:provider/provider.dart';
 import 'ui/home_page.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-      create: (BuildContext context) =>
-          ArticleProvider(ArticlesRepository(ApiService())),
-      child: const MyApp()));
+  runApp(
+      ChangeNotifierProvider(
+          create: (BuildContext context) =>
+              ArticleProvider(ArticlesRepository(ApiService())),
+          child: const MyApp(),
+      ),
+  );
 }
 
 class MyApp extends StatelessWidget {
